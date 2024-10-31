@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Файл Шифрования</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Используем url_for для правильного пути к CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form id="encryptionForm" enctype="multipart/form-data" method="post">
+        <label for="method">Метод шифрования:</label>
+        <select id="method" name="method">
+            <option value="1">Ш4.1.2</option>
+            <option value="2">Ш4.2.4</option>
+            <option value="3">Ш4.2.5</option>
+            <option value="4">Ш4.2.6</option>
+            <option value="5">Ш4.3.1</option>
+            <option value="6">Ш4.4.1</option>
+            <option value="7">Ш4.3.2</option>
+            <option value="8">Ш4.4.2</option>
+            <option value="9">Ш4.4.3</option>
+        </select><br><br>
+
+        <label for="modulus">Модуль:</label>
+        <select id="modulus" name="modulus">
+            <option value="2">2</option>
+            <option value="69">69</option>
+        </select><br><br>
+
+        <label for="file">Выберите файл:</label>
+        <input type="file" id="file" name="file" required><br><br>
+
+        <button type="button" onclick="encryptFile()">Зашифровать файл</button>
+        <button type="button" onclick="downloadGamma()">Скачать гамму</button>
+    </form>
+
+    <script>
+        function encryptFile() {
+            const formData = new FormData(document.getElementById('encryptionForm'));
+            
+            fetch('/encrypt', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'encrypted_file.txt';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Ошибка при шифровании файла:', error));
+        }
+
+        function downloadGamma() {
+            fetch('/download-gamma')
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'gamma.txt';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Ошибка при загрузке гаммы:', error));
+        }
+    </script>
+</body>
+</html>
+
