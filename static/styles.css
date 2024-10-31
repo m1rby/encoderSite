@@ -27,6 +27,19 @@ body {
     height: 80px;
 }
 
+.form-container {
+            display: none; /* Скрываем формы по умолчанию */
+            transition: transform 0.5s ease;
+        }
+        .active {
+            display: block; /* Показываем активную форму */
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+            margin: 20px;
+        }
+
 /* Стили формы */
 form {
     background: rgba(255, 255, 255, 0.1);
@@ -51,6 +64,19 @@ label {
     font-size: 1.2rem;
     margin-top: 10px;
     display: block;
+}
+
+/* Стили для радиокнопок */
+.radio-group {
+    display: flex; /* Используем flexbox для расположения элементов в одну строку */
+    align-items: center; /* Центрируем элементы по вертикали */
+    gap: 10px; /* Отступ между радиокнопками */
+    margin-left: 10px; /* Отступ слева от метки вопроса */
+}
+
+/* Стили для меток радиокнопок */
+.radio-group label {
+    margin: 0; /* Убираем отступы у меток */
 }
 
 select, input[type="file"] {
@@ -174,3 +200,4 @@ footer a:hover {
     opacity: 1;
     left: 110%; /* Легкое смещение для плавности при показе */
 }
+

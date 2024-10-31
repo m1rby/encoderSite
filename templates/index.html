@@ -3,41 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Файл Шифрования</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Используем url_for для правильного пути к CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<script src="{{ url_for('static', filename='scriptTooltip.js') }}"></script>
+<img src="{{ url_for('static', filename='dedsec.gif') }}" alt="Gif image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form id="encryptionForm" enctype="multipart/form-data" method="post">
-        <label for="method">Метод шифрования:</label>
-        <select id="method" name="method">
-            <option value="1">Ш4.1.2</option>
-            <option value="2">Ш4.2.4</option>
-            <option value="3">Ш4.2.5</option>
-            <option value="4">Ш4.2.6</option>
-            <option value="5">Ш4.3.1</option>
-            <option value="6">Ш4.4.1</option>
-            <option value="7">Ш4.3.2</option>
-            <option value="8">Ш4.4.2</option>
-            <option value="9">Ш4.4.3</option>
-        </select><br><br>
+<div class="header">
+        IT ENERGY PLUS
+    </div>
+    <div class="form-container active" id="encryptionContainer">
+        <form id="encryptionForm" enctype="multipart/form-data" method="post">
+            <label for="method">Метод шифрования:</label>
+           <select id="method" name="method" onchange="updateTooltip()">
+                <option value="1">Ш4.1.2</option>
+                <option value="2">Ш4.2.4</option>
+                <option value="3">Ш4.2.5</option>
+                <option value="4">Ш4.2.6</option>
+                <option value="5">Ш4.3.1</option>
+                <option value="6">Ш4.4.1</option>
+                <option value="7">Ш4.3.2</option>
+                <option value="8">Ш4.4.2</option>
+                <option value="9">Ш4.4.3</option>
+            </select>
+			    <span class="tooltip">❔
+        <span id="tooltip-text" class="tooltip-text">Выберите метод шифрования для получения информации</span>
+    </span>
 
-        <label for="modulus">Модуль:</label>
-        <select id="modulus" name="modulus">
-            <option value="2">2</option>
-            <option value="69">69</option>
-        </select><br><br>
+            <label for="modulus">Модуль:</label>
+            <select id="modulus" name="modulus">
+                <option value="2">2</option>
+                <option value="69">69</option>
+            </select><br><br>
 
-        <label for="file">Выберите файл:</label>
-        <input type="file" id="file" name="file" required><br><br>
+            <label for="file">Выберите файл:</label>
+            <input type="file" id="file" name="file" required><br><br>
 
-        <button type="button" onclick="encryptFile()">Зашифровать файл</button>
-        <button type="button" onclick="downloadGamma()">Скачать гамму</button>
-    </form>
+            <button type="button" onclick="encryptFile()">Зашифровать файл</button>
+            <button type="button" onclick="downloadGamma()">Скачать гамму</button>
+        </form>
+    </div>
+
+    <div class="form-container" id="decryptionContainer">
+        <form id="decryptionForm" enctype="multipart/form-data" method="post">
+            <label for="decryptFile">Выберите файл для дешифровки:</label>
+            <input type="file" id="decryptFile" name="decryptFile" required><br><br>
+
+            <label for="gammaFile">Выберите файл с гаммой:</label>
+            <input type="file" id="gammaFile" name="gammaFile" required><br><br>
+
+<label>Есть ли байт длины?</label>
+<div class="radio-group">
+    <input type="radio" id="lengthByteYes" name="lengthByte" value="yes">
+    <label for="lengthByteYes">Да</label>
+    <input type="radio" id="lengthByteNo" name="lengthByte" value="no">
+    <label for="lengthByteNo">Нет</label>
+</div>
+<br><br>
+
+<label>Есть ли байт контрольной суммы?</label>
+<div class="radio-group">
+    <input type="radio" id="checksumByteYes" name="checksumByte" value="yes">
+    <label for="checksumByteYes">Да</label>
+    <input type="radio" id="checksumByteNo" name="checksumByte" value="no">
+    <label for="checksumByteNo">Нет</label>
+</div>
+<br><br>
+            <button type="button" onclick="decryptFile()">Дешифровать файл</button>
+        </form>
+    </div>
+
+    <div class="arrow" onclick="toggleForms()">Сменить режим</div> <!-- Стрелка для переключения форм -->
+	
+	 <footer>
+        <p>Все права защищены &copy; 2024</p>
+        <a href="https://github.com/m1rby/encoderSite" target="_blank">GitHub</a>
+    </footer>
 
     <script>
+        function toggleForms() {
+            const encryptionContainer = document.getElementById('encryptionContainer');
+            const decryptionContainer = document.getElementById('decryptionContainer');
+
+            if (encryptionContainer.classList.contains('active')) {
+                encryptionContainer.classList.remove('active');
+                decryptionContainer.classList.add('active');
+            } else {
+                decryptionContainer.classList.remove('active');
+                encryptionContainer.classList.add('active');
+            }
+        }
+
         function encryptFile() {
             const formData = new FormData(document.getElementById('encryptionForm'));
             
@@ -74,7 +134,33 @@
             })
             .catch(error => console.error('Ошибка при загрузке гаммы:', error));
         }
+
+        function decryptFile() {
+            const formData = new FormData(document.getElementById('decryptionForm'));
+            
+            fetch('/decrypt', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'decrypted_file.txt';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Ошибка при дешифровке файла:', error));
+			
+			
+		
+
+        }
     </script>
 </body>
 </html>
+
 
