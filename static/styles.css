@@ -13,19 +13,28 @@ body {
 
 /* Заголовок */
 .header {
+    display: flex;
+    align-items: center;
     font-size: 3rem;
-    color: #00000;
+    
     margin-bottom: 30px;
     text-align: center;
     font-weight: 100;
 }
 
 
-/* Стили GIF */
-.gif-image {
-    width: 80px;
-    height: 80px;
+
+.logo img {
+    width: 70px; /* Задайте желаемую ширину */
+    height: auto; /* Автоматически подстраивает высоту для сохранения пропорций */
 }
+
+.title {
+    font-size: 50px; /* Настройте размер текста */
+}
+
+
+
 
 .form-container {
             display: none; /* Скрываем формы по умолчанию */
@@ -143,7 +152,7 @@ footer {
 }
 
 footer a {
-    color: #fffff;
+    
     text-decoration: none;
     font-weight: 100;
 }

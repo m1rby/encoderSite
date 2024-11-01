@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <title>Файл Шифрования</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-<script src="{{ url_for('static', filename='scriptTooltip.js') }}"></script>
-<img src="{{ url_for('static', filename='dedsec.gif') }}" alt="Gif image">
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="header">
-        IT ENERGY PLUS
-    </div>
+    <div class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
+        </div>
+        <div class="title">IT ENERGY PLUS</div>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
+        </div>
+    </div>    
+
     <div class="form-container active" id="encryptionContainer">
         <form id="encryptionForm" enctype="multipart/form-data" method="post">
             <label for="method">Метод шифрования:</label>
-           <select id="method" name="method" onchange="updateTooltip()">
+            <select id="method" name="method" onchange="updateTooltip()">
                 <option value="1">Ш4.1.2</option>
                 <option value="2">Ш4.2.4</option>
                 <option value="3">Ш4.2.5</option>
@@ -30,9 +35,9 @@
                 <option value="8">Ш4.4.2</option>
                 <option value="9">Ш4.4.3</option>
             </select>
-			    <span class="tooltip">❔
-        <span id="tooltip-text" class="tooltip-text">Выберите метод шифрования для получения информации</span>
-    </span>
+            <span class="tooltip">❔
+                <span id="tooltip-text" class="tooltip-text">Выберите метод шифрования для получения информации</span>
+            </span>
 
             <label for="modulus">Модуль:</label>
             <select id="modulus" name="modulus">
@@ -52,34 +57,33 @@
         <form id="decryptionForm" enctype="multipart/form-data" method="post">
             <label for="decryptFile">Выберите файл для дешифровки:</label>
             <input type="file" id="decryptFile" name="decryptFile" required><br><br>
-
+        
             <label for="gammaFile">Выберите файл с гаммой:</label>
             <input type="file" id="gammaFile" name="gammaFile" required><br><br>
-
-<label>Есть ли байт длины?</label>
-<div class="radio-group">
-    <input type="radio" id="lengthByteYes" name="lengthByte" value="yes">
-    <label for="lengthByteYes">Да</label>
-    <input type="radio" id="lengthByteNo" name="lengthByte" value="no">
-    <label for="lengthByteNo">Нет</label>
-</div>
-<br><br>
-
-<label>Есть ли байт контрольной суммы?</label>
-<div class="radio-group">
-    <input type="radio" id="checksumByteYes" name="checksumByte" value="yes">
-    <label for="checksumByteYes">Да</label>
-    <input type="radio" id="checksumByteNo" name="checksumByte" value="no">
-    <label for="checksumByteNo">Нет</label>
-</div>
-<br><br>
+        
+            <label>Есть ли байт длины?</label>
+            <div class="radio-group">
+                <input type="radio" id="lengthByteYes" name="lengthByte" value="yes" checked>
+                <label for="lengthByteYes">Да</label>
+                <input type="radio" id="lengthByteNo" name="lengthByte" value="no">
+                <label for="lengthByteNo">Нет</label>
+            </div>
+            
+            <label>Есть ли байт контрольной суммы?</label>
+            <div class="radio-group">
+                <input type="radio" id="checksumByteYes" name="checksumByte" value="yes" checked>
+                <label for="checksumByteYes">Да</label>
+                <input type="radio" id="checksumByteNo" name="checksumByte" value="no">
+                <label for="checksumByteNo">Нет</label>
+            </div>
+            <br><br>
             <button type="button" onclick="decryptFile()">Дешифровать файл</button>
         </form>
     </div>
 
     <div class="arrow" onclick="toggleForms()">Сменить режим</div> <!-- Стрелка для переключения форм -->
 	
-	 <footer>
+    <footer>
         <p>Все права защищены &copy; 2024</p>
         <a href="https://github.com/m1rby/encoderSite" target="_blank">GitHub</a>
     </footer>
@@ -98,7 +102,30 @@
             }
         }
 
+        function decryptFile() {
+            console.log("Функция decryptFile вызвана"); // Лог для отладки
+            const formData = new FormData(document.getElementById('decryptionForm'));
+
+            fetch('/decrypt', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'decrypted_file.txt';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Ошибка при дешифровке файла:', error));
+        }
+
         function encryptFile() {
+            console.log("Функция encryptFile вызвана"); // Лог для отладки
             const formData = new FormData(document.getElementById('encryptionForm'));
             
             fetch('/encrypt', {
@@ -120,6 +147,7 @@
         }
 
         function downloadGamma() {
+            console.log("Функция downloadGamma вызвана"); // Лог для отладки
             fetch('/download-gamma')
             .then(response => response.blob())
             .then(blob => {
@@ -135,32 +163,52 @@
             .catch(error => console.error('Ошибка при загрузке гаммы:', error));
         }
 
-        function decryptFile() {
-            const formData = new FormData(document.getElementById('decryptionForm'));
-            
-            fetch('/decrypt', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'decrypted_file.txt';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => console.error('Ошибка при дешифровке файла:', error));
-			
-			
-		
+        function updateTooltip() {
+    const tooltipText = document.getElementById("tooltip-text");
+    const method = document.getElementById("method").value;
 
-        }
+    switch (method) {
+        case "2":
+            tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
+            break;
+        case "1":
+            tooltipText.innerHTML = "Ш4.2.4: Метод с метками по времени (секунды, день, неделя).";
+            break;
+        case "3":
+            tooltipText.innerHTML = "Ш4.2.5: Метод с метками по времени (секунды, день, неделя) и контрольной суммой.";
+            break;
+        case "4":
+            tooltipText.innerHTML = "Ш4.2.6: Метод с метками по времени (секунды, день, неделя) и открытой длиной.";
+            break;
+        case "5":
+            tooltipText.innerHTML = "Ш4.3.1: Метод с полем длины открытого текста.";
+            break;
+        case "6":
+            tooltipText.innerHTML = "Ш4.4.1: Метод с полем контрольной суммы.";
+            break;
+        case "7":
+            tooltipText.innerHTML = "Ш4.3.2: Метод с полем длины открытого текста.";
+            break;
+        case "8":
+            tooltipText.innerHTML = "Ш4.4.2: Метод с полем контрольной суммы.";
+            break;
+        case "9":
+            tooltipText.innerHTML = "Ш4.4.3: Метод с дополнительным полем контрольной суммы.";
+            break;
+        default:
+            tooltipText.innerHTML = "Выберите метод шифрования для получения информации.";
+    }
+}
+// Добавляем обработчики событий для показа и скрытия подсказки
+document.querySelector('.tooltip').addEventListener('mouseenter', () => {
+    document.getElementById("tooltip-text").style.display = 'block';
+});
+
+document.querySelector('.tooltip').addEventListener('mouseleave', () => {
+    document.getElementById("tooltip-text").style.display = 'none';
+});
+
+
     </script>
 </body>
 </html>
-
-

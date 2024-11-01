@@ -26,6 +26,38 @@ def encrypt_file():
     # Отправляем зашифрованный файл обратно
     return send_file(input_filename, as_attachment=True, download_name="encrypted_file.txt")
 
+@app.route('/decrypt', methods=['POST'])
+def decrypt_file():
+    # Получаем данные от формы
+    file = request.files['decryptFile']
+    gamma = request.files['gammaFile']
+    length_byte = request.form['lengthByte']
+    checksum_byte = request.form['checksumByte']
+
+    # Сохраняем загруженные файлы
+    decrypt_filename = 'decrypt_input.txt'
+    gamma_filename = 'gamma_file.txt'
+    output_filename = 'decrypted_output.txt'
+    file.save(decrypt_filename)
+    gamma.save(gamma_filename)
+
+    # Преобразуем радиокнопки в 'y' или 'n'
+    length_arg = 'y' if length_byte == 'yes' else 'n'
+    checksum_arg = 'y' if checksum_byte == 'yes' else 'n'
+
+    # Запуск decryptor.exe
+    result = subprocess.run(['./decryptor.exe', decrypt_filename, gamma_filename, length_arg, checksum_arg])
+
+    # Проверка на ошибки выполнения
+    if result.returncode != 0:
+        print("Ошибка выполнения decryptor.exe")
+        return "Ошибка при дешифровке файла", 500
+
+    # Отправка расшифрованного файла
+    return send_file(output_filename, as_attachment=True, download_name="decrypted_file.txt")
+
+
+    
 # Маршрут для скачивания файла гаммы
 @app.route('/download-gamma', methods=['GET'])
 def download_gamma():
