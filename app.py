@@ -1,6 +1,7 @@
-from flask import Flask, request, send_file, render_template_string, render_template
+from flask import Flask, request, send_file, render_template
 import subprocess
 import os
+import uuid
 
 app = Flask(__name__)
 
@@ -16,15 +17,18 @@ def encrypt_file():
     method = request.form['method']
     modulus = request.form['modulus']
     
-    # Сохраняем загруженный файл
-    input_filename = 'input.txt'
+    # Уникальное имя файла для предотвращения коллизий
+    input_filename = f"{uuid.uuid4()}_{file.filename}"
     file.save(input_filename)
 
     # Запускаем encryptor.exe с параметрами
     subprocess.run(['./encryptor.exe', input_filename, modulus, method])
 
     # Отправляем зашифрованный файл обратно
-    return send_file(input_filename, as_attachment=True, download_name="encrypted_file.txt")
+    encrypted_filename = f"encrypted_{file.filename}"
+    return send_file(input_filename, as_attachment=True, download_name=encrypted_filename)
+
+import os
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt_file():
@@ -34,10 +38,9 @@ def decrypt_file():
     length_byte = request.form['lengthByte']
     checksum_byte = request.form['checksumByte']
 
-    # Сохраняем загруженные файлы
-    decrypt_filename = 'decrypt_input.txt'
-    gamma_filename = 'gamma_file.txt'
-    output_filename = 'decrypted_output.txt'
+    # Уникальные имена файлов для предотвращения коллизий
+    decrypt_filename = f"{uuid.uuid4()}_{file.filename}"
+    gamma_filename = f"{uuid.uuid4()}_gamma_file"
     file.save(decrypt_filename)
     gamma.save(gamma_filename)
 
@@ -46,18 +49,13 @@ def decrypt_file():
     checksum_arg = 'y' if checksum_byte == 'yes' else 'n'
 
     # Запуск decryptor.exe
-    result = subprocess.run(['./decryptor.exe', decrypt_filename, gamma_filename, length_arg, checksum_arg])
-
-    # Проверка на ошибки выполнения
-    if result.returncode != 0:
-        print("Ошибка выполнения decryptor.exe")
-        return "Ошибка при дешифровке файла", 500
-
-    # Отправка расшифрованного файла
-    return send_file(output_filename, as_attachment=True, download_name="decrypted_file.txt")
+    subprocess.run(['./decryptor.exe', decrypt_filename, gamma_filename, length_arg, checksum_arg], check=True)
 
 
-    
+    # Возврат зашифрованного файла
+    return send_file(decrypt_filename, as_attachment=True, download_name=f"decrypted_{file.filename}")
+
+
 # Маршрут для скачивания файла гаммы
 @app.route('/download-gamma', methods=['GET'])
 def download_gamma():

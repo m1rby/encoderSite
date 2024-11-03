@@ -168,10 +168,10 @@
     const method = document.getElementById("method").value;
 
     switch (method) {
-        case "2":
+        case "1":
             tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
             break;
-        case "1":
+        case "2":
             tooltipText.innerHTML = "Ш4.2.4: Метод с метками по времени (секунды, день, неделя).";
             break;
         case "3":
@@ -196,7 +196,7 @@
             tooltipText.innerHTML = "Ш4.4.3: Метод с дополнительным полем контрольной суммы.";
             break;
         default:
-            tooltipText.innerHTML = "Выберите метод шифрования для получения информации.";
+            tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
     }
 }
 // Добавляем обработчики событий для показа и скрытия подсказки
