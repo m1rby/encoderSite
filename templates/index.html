@@ -116,7 +116,7 @@
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = 'decrypted_file.txt';
+                a.download = 'decrypted_file';
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
@@ -138,7 +138,7 @@
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = 'encrypted_file.txt';
+                a.download = 'encrypted_file';
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
