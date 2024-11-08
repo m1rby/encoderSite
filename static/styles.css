@@ -1,6 +1,6 @@
 /* Основные стили */
 body {
-    font-family: 'Rubik Glitch', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #000000;
     color: #ffffff;
     display: flex;
@@ -30,6 +30,7 @@ body {
 }
 
 .title {
+	font-family: 'Rubik Glitch', sans-serif;
     font-size: 50px; /* Настройте размер текста */
 }
 

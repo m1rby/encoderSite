@@ -25,16 +25,31 @@
         <form id="encryptionForm" enctype="multipart/form-data" method="post">
             <label for="method">Метод шифрования:</label>
             <select id="method" name="method" onchange="updateTooltip()">
-                <option value="1">Ш4.1.2</option>
-                <option value="2">Ш4.2.4</option>
-                <option value="3">Ш4.2.5</option>
-                <option value="4">Ш4.2.6</option>
-                <option value="5">Ш4.3.1</option>
-                <option value="6">Ш4.4.1</option>
-                <option value="7">Ш4.3.2</option>
-                <option value="8">Ш4.4.2</option>
-                <option value="9">Ш4.4.3</option>
-            </select>
+    <option value="1">Ш4.1.2</option>
+    <option value="2">Ш4.2.4</option>
+    <option value="3">Ш4.2.5</option>
+    <option value="4">Ш4.2.6</option>
+    <option value="5">Ш4.3.1</option>
+    <option value="6">Ш4.4.1</option>
+    <option value="7">Ш4.3.2</option>
+    <option value="8">Ш4.4.2</option>
+    <option value="9">Ш4.4.3</option>
+    <option value="10">Ш4.5.1</option>
+    <option value="11">Ш4.6.1.1</option>
+    <option value="12">Ш4.6.1.2</option>
+    <option value="13">Ш4.6.1.3</option>
+    <option value="14">Ш4.7.1</option>
+    <option value="15">Ш4.6.2.1</option>
+    <option value="16">Ш4.6.2.2</option>
+    <option value="17">Ш4.6.2.3</option>
+    <option value="18">Ш4.8.1.1</option>
+    <option value="19">Ш4.8.1.2</option>
+    <option value="20">Ш4.8.1.3</option>
+    <option value="21">Ш4.8.2.1</option>
+    <option value="22">Ш4.8.2.2</option>
+    <option value="23">Ш4.8.2.3</option>
+    <option value="24">Ш4.8.2.4</option>
+</select>
             <span class="tooltip">❔
                 <span id="tooltip-text" class="tooltip-text">Выберите метод шифрования для получения информации</span>
             </span>
@@ -168,33 +183,78 @@
     const method = document.getElementById("method").value;
 
     switch (method) {
-        case "1":
-            tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
-            break;
-        case "2":
-            tooltipText.innerHTML = "Ш4.2.4: Метод с метками по времени (секунды, день, неделя).";
-            break;
-        case "3":
-            tooltipText.innerHTML = "Ш4.2.5: Метод с метками по времени (секунды, день, неделя) и контрольной суммой.";
-            break;
-        case "4":
-            tooltipText.innerHTML = "Ш4.2.6: Метод с метками по времени (секунды, день, неделя) и открытой длиной.";
-            break;
-        case "5":
-            tooltipText.innerHTML = "Ш4.3.1: Метод с полем длины открытого текста.";
-            break;
-        case "6":
-            tooltipText.innerHTML = "Ш4.4.1: Метод с полем контрольной суммы.";
-            break;
-        case "7":
-            tooltipText.innerHTML = "Ш4.3.2: Метод с полем длины открытого текста.";
-            break;
-        case "8":
-            tooltipText.innerHTML = "Ш4.4.2: Метод с полем контрольной суммы.";
-            break;
-        case "9":
-            tooltipText.innerHTML = "Ш4.4.3: Метод с дополнительным полем контрольной суммы.";
-            break;
+         case "1":
+        tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
+        break;
+    case "2":
+        tooltipText.innerHTML = "Ш4.2.4: Метод с метками по времени (секунды, день, неделя).";
+        break;
+    case "3":
+        tooltipText.innerHTML = "Ш4.2.5: Метод с метками по времени (секунды, день, неделя) и контрольной суммой.";
+        break;
+    case "4":
+        tooltipText.innerHTML = "Ш4.2.6: Метод с метками по времени (секунды, день, неделя) и открытой длиной.";
+        break;
+    case "5":
+        tooltipText.innerHTML = "Ш4.3.1: Метод с полем длины открытого текста.";
+        break;
+    case "6":
+        tooltipText.innerHTML = "Ш4.4.1: Метод с полем контрольной суммы.";
+        break;
+    case "7":
+        tooltipText.innerHTML = "Ш4.3.2: Метод с полем длины открытого текста.";
+        break;
+    case "8":
+        tooltipText.innerHTML = "Ш4.4.2: Метод с полем контрольной суммы.";
+        break;
+    case "9":
+        tooltipText.innerHTML = "Ш4.4.3: Метод с дополнительным полем контрольной суммы.";
+        break;
+    case "10":
+        tooltipText.innerHTML = "Ш4.5.1: Метод с маркантом, зависящим от секунд, и полем длины.";
+        break;
+    case "11":
+        tooltipText.innerHTML = "Ш4.6.1.1: Метод с контрольной суммой, не зависящей от времени.";
+        break;
+    case "12":
+        tooltipText.innerHTML = "Ш4.6.1.2: Метод с маркантом, не зависящим от времени.";
+        break;
+    case "13":
+        tooltipText.innerHTML = "Ш4.6.1.3: Метод с маркантом и контрольной суммой.";
+        break;
+    case "14":
+        tooltipText.innerHTML = "Ш4.7.1: Метод с полем длины открытого текста и контрольной суммой.";
+        break;
+    case "15":
+        tooltipText.innerHTML = "Ш4.6.2.1: Метод с контрольной суммой, зависящей от времени.";
+        break;
+    case "16":
+        tooltipText.innerHTML = "Ш4.6.2.2: Метод с контрольной суммой и маркантом.";
+        break;
+    case "17":
+        tooltipText.innerHTML = "Ш4.6.2.3: Метод с маркантом и контрольной суммой, зависящей от времени.";
+        break;
+    case "18":
+        tooltipText.innerHTML = "Ш4.8.1.1: Метод с полем длины и контрольной суммой, не зависящей от времени.";
+        break;
+    case "19":
+        tooltipText.innerHTML = "Ш4.8.1.2: Метод с полем длины и контрольной суммой, с маркантом, не зависящим от времени.";
+        break;
+    case "20":
+        tooltipText.innerHTML = "Ш4.8.1.3: Метод с полем длины и контрольной суммой, с маркантом.";
+        break;
+    case "21":
+        tooltipText.innerHTML = "Ш4.8.2.1: Метод с полем длины и контрольной суммой, зависящей от времени.";
+        break;
+    case "22":
+        tooltipText.innerHTML = "Ш4.8.2.2: Метод с маркантом, полем длины и контрольной суммой, зависящей от времени.";
+        break;
+    case "23":
+        tooltipText.innerHTML = "Ш4.8.2.3: Метод с полем длины и контрольной суммой, зависящей от времени.";
+        break;
+    case "24":
+        tooltipText.innerHTML = "Ш4.8.2.4: Метод с полем длины, маркантом и контрольной суммой, зависящей от времени.";
+        break;
         default:
             tooltipText.innerHTML = "Ш4.1.2: Метод с блоком 16 байт, модулем 69 и гаммой для латиницы или кириллицы.";
     }
