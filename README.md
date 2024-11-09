@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/m1rby/encoderSite/blob/main/eyes_black_VEED.gif?raw=true" alt="NeoHtop Screenshot" width="800" />
+  <img src="https://github.com/m1rby/encoderSite/blob/main/eyes-black-VEED.gif?raw=true" alt="NeoHtop Screenshot" width="800" />
 </div>
 
 
