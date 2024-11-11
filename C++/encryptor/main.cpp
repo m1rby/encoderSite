@@ -156,25 +156,30 @@ int main(int argc, char* argv[]) {
         string resultText;
 
         // Генерация гаммы на основе метода
-        if (methodChoice == 1 || methodChoice == 5 || methodChoice == 6 || methodChoice == 10 || methodChoice == 14 || methodChoice == 21) {
+        if (methodChoice == 1 || methodChoice == 5 || methodChoice == 6 || methodChoice == 16) {
             char majorityAlphabet = detectMajorityAlphabet(text);
             gamma = generateGamma(majorityAlphabet); // Генерация гаммы
         } else if (methodChoice == 2 || methodChoice == 3 || methodChoice == 4) {
             gamma = generateTimeBasedGamma(methodChoice - 1); // Генерация гаммы на основе времени с вычитанием 1
         } else if (methodChoice == 7 || methodChoice == 8 || methodChoice == 9) {
             gamma = generateTimeBasedGamma(methodChoice - 6); // Генерация гаммы на основе времени с вычитанием 6
-        } else if (methodChoice == 11 || methodChoice == 12 || methodChoice == 13) {
-            gamma = generateTimeBasedGamma(methodChoice - 10); // Генерация гаммы на основе времени с вычитанием 10
-        } else if (methodChoice == 15 || methodChoice == 16 || methodChoice == 17) {
-            gamma = generateTimeBasedGamma(methodChoice - 14); // Генерация гаммы на основе времени с вычитанием 14
-        } else if (methodChoice == 18 || methodChoice == 19 || methodChoice == 20) {
-            gamma = generateTimeBasedGamma(methodChoice - 17); // Генерация гаммы на основе времени с вычитанием 17
-        } else if (methodChoice == 22 || methodChoice == 23 || methodChoice == 24) {
-            gamma = generateTimeBasedGamma(methodChoice - 21); // Генерация гаммы на основе времени с вычитанием 21
+        } else if (methodChoice == 10 || methodChoice == 11 || methodChoice == 12) {
+            gamma = generateTimeBasedGamma(methodChoice - 9); // Генерация гаммы на основе времени с вычитанием 9
+        } else if (methodChoice == 13 || methodChoice == 14 || methodChoice == 15) {
+            gamma = generateTimeBasedGamma(methodChoice - 12); // Генерация гаммы на основе времени с вычитанием 12
+        } else if (methodChoice == 17 || methodChoice == 18 || methodChoice == 19) {
+            gamma = generateTimeBasedGamma(methodChoice - 16); // Генерация гаммы на основе времени с вычитанием 16
+        } else if (methodChoice == 20 || methodChoice == 21 || methodChoice == 22) {
+            gamma = generateTimeBasedGamma(methodChoice - 19); // Генерация гаммы на основе времени с вычитанием 19
         }
 
-
         resultText = xorBlock(text, gamma, MODULUS);
+
+        if(methodChoice >=23)
+        {
+            wcout << L"Ошибка при выборе способа шифрования." << endl;
+            return 3;
+        }
 
         // Добавление байта открытой длины (Ш4.3.1-Ш4.3.2, Ш4.5.1-Ш4.5.6)
         if (methodChoice == 5 || methodChoice == 7 || methodChoice == 8 || methodChoice == 9) {
@@ -183,19 +188,19 @@ int main(int argc, char* argv[]) {
         }
 
         // Добавление контрольной суммы, не зависящей от времени (Ш4.4.1-Ш4.4.2, Ш4.6.1.1-Ш4.6.1.6)
-        if (methodChoice == 6 || methodChoice == 11 || methodChoice == 12 || methodChoice == 13) {
+        if (methodChoice == 6 || methodChoice == 10 || methodChoice == 11 || methodChoice == 12) {
             unsigned char checksumByte = calculateChecksum(text);
             resultText += checksumByte; // Добавляем байт контрольной суммы
         }
 
         // Добавление контрольной суммы, зависящей от времени (Ш4.6.2.1-Ш4.6.2.6)
-        if (methodChoice == 10 || methodChoice == 15 || methodChoice == 16 || methodChoice == 17) {
+        if (methodChoice == 13 || methodChoice == 14 || methodChoice == 15) {
             unsigned char timeDependentChecksum = calculateTimeDependentChecksum(text);
             resultText += timeDependentChecksum; // Добавляем байт контрольной суммы
         }
 
-        // Добавление байта длины и контрольной суммы, не зависящей от времени (Ш4.7.1-Ш4.7.2, Ш4.8.1.1-Ш4.8.1.6)
-        if (methodChoice == 14 || methodChoice == 18 || methodChoice == 19 || methodChoice == 20)
+        // Добаление байта длины и контрольной суммы, не зависящей от времени (Ш4.7.1-Ш4.7.2, Ш4.8.1.1-Ш4.8.1.6)
+        if (methodChoice == 16 || methodChoice == 17 || methodChoice == 18 || methodChoice == 19)
         {
             unsigned char lengthByte = static_cast<unsigned char>(text.size());
             unsigned char checksumByte = calculateChecksum(text);
@@ -204,13 +209,14 @@ int main(int argc, char* argv[]) {
         }
 
         // Добавление байта длины и контрольной суммы, зависящей от времени (Ш4.8.2.1-Ш4.8.2.6)
-        if (methodChoice == 21 || methodChoice == 22 || methodChoice == 23 || methodChoice == 24)
+        if (methodChoice == 20 || methodChoice == 21 || methodChoice == 22)
         {
             unsigned char lengthByte = static_cast<unsigned char>(text.size());
             unsigned char timeDependentChecksum = calculateTimeDependentChecksum(text);
             resultText += lengthByte; // Добавляем байт длины
             resultText += timeDependentChecksum; // Добавляем байт контрольной суммы
         }
+
 
         // Сохраняем гамму в файл для последующего дешифрования
         ofstream gammaFile("gamma.txt", ios::binary);
