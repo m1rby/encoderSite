@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Файл Шифрования</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,18 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
+    <header>
+        <div class="header-style">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
+            </div>
+            <div class="title">IT ENERGY PLUS</div>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
+            </div>
         </div>
-        <div class="title">IT ENERGY PLUS</div>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='anonymous.gif') }}" alt="Gif image">
-        </div>
-    </div>    
+    </header>    
 
     <div class="form-container active" id="encryptionContainer">
-        <form id="encryptionForm" enctype="multipart/form-data" method="post">
+        <form class="container" id="encryptionForm" enctype="multipart/form-data" method="post">
             <label for="method">Метод шифрования:</label>
             <select id="method" name="method" onchange="updateTooltip()">
     <option value="1">Ш4.1.2</option>
@@ -69,7 +72,7 @@
     </div>
 
     <div class="form-container" id="decryptionContainer">
-        <form id="decryptionForm" enctype="multipart/form-data" method="post">
+        <form class="container" id="decryptionForm" enctype="multipart/form-data" method="post">
             <label for="decryptFile">Выберите файл для дешифровки:</label>
             <input type="file" id="decryptFile" name="decryptFile" required><br><br>
         
@@ -270,5 +273,6 @@ document.querySelector('.tooltip').addEventListener('mouseleave', () => {
 
 
     </script>
+   
 </body>
 </html>
