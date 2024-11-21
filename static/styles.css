@@ -1,19 +1,32 @@
-/* Основные стили */
-body {
-    font-family: 'Roboto', sans-serif;
+body,html {
+    font-family: 'Roboto Mono', sans-serif;
     background: #000000;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    min-width:100%;
     margin: 0;
+    z-index: 1;
+    background-color: #000000; /* Непрозрачный черный фон */
+    color: #ffffff;
+    margin: 0;
+    position: relative;
+}
+main{
+    flex:1;
 }
 
+
 /* Заголовок */
-.header {
+.header-style {
+    position:relative;
+    margin-top:auto;
     display: flex;
+    
+    flex-direction:row;
     align-items: center;
     font-size: 3rem;
     
@@ -24,18 +37,24 @@ body {
 
 
 
-.logo img {
-    width: 70px; /* Задайте желаемую ширину */
-    height: auto; /* Автоматически подстраивает высоту для сохранения пропорций */
+.logo img{
+    width: 59.2px;
+    height:auto;
+    padding:auto;
+    margin:0;
 }
 
 .title {
+    display: inline-block;
 	font-family: 'Rubik Glitch', sans-serif;
     font-size: 50px; /* Настройте размер текста */
+    margin:auto;
 }
 
 
-
+.container{
+    display:block;
+}
 
 .form-container {
             display: none; /* Скрываем формы по умолчанию */
@@ -48,15 +67,20 @@ body {
             cursor: pointer;
             font-size: 24px;
             margin: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding:1% 2%;
+            border-radius: 10px;
         }
 
 /* Стили формы */
 form {
+    display:flex;
+    flex-direction: column;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    width: 100%;
     text-align: center;
     animation: fadeInUp 1s ease-in-out;
 }
@@ -153,7 +177,7 @@ footer {
 }
 
 footer a {
-    
+    margin-top:auto;
     text-decoration: none;
     font-weight: 100;
 }
