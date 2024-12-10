@@ -20,6 +20,6 @@ pip install flask
 
 Enter to your folder with project and use cmd:
 ```
-python.exe app.py
+python app.py
 ```
 
