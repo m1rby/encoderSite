@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Encoder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Шифрование и дешифрование файлов</h1>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="encrypt">Шифрование</button>
+            <button class="tab-button" data-tab="decrypt">Дешифрование</button>
+        </div>
+
+        <div class="tab-content" id="encrypt">
+            <h2>Шифрование</h2>
+            <form id="encryptForm" enctype="multipart/form-data">
+                <label for="inputFile">Выберите файл для шифрования:</label>
+                <input type="file" name="inputFile" id="inputFile" required><br><br>
+
+                <label for="modulus">Выберите модуль гаммы:</label>
+                <select name="modulus" id="modulus">
+                    <option value="2">2</option>
+                    <option value="69">69</option>
+                </select><br><br>
+
+                <label for="methodChoice">Выберите метод шифрования:</label>
+                <select id="methodChoice" name="methodChoice">
+                    <option value="1">Шифр 4.1.1 и 4.1.2</option>
+                    <option value="2">Шифр 4.2.1 и 4.2.4</option>
+                    <option value="3">Шифр 4.2.2 и 4.2.5</option>
+                    <option value="4">Шифр 4.2.3 и 4.2.6</option>
+                    <option value="5">Шифр 4.3.1 и 4.3.2</option>
+                    <option value="6">Шифр 4.4.1 и 4.4.2</option>
+                    <option value="7">Шифр 4.5.1 и 4.5.4</option>
+                    <option value="8">Шифр 4.5.2 и 4.5.5</option>
+                    <option value="9">Шифр 4.5.3 и 4.5.6</option>
+                    <option value="10">Шифр 4.6.1.1 и 4.6.1.4</option>
+                    <option value="11">Шифр 4.6.1.2 и 4.6.1.5</option>
+                    <option value="12">Шифр 4.6.1.3 и 4.6.1.6</option>
+                    <option value="13">Шифр 4.6.2.1 и 4.6.2.4</option>
+                    <option value="14">Шифр 4.6.2.2 и 4.6.2.5</option>
+                    <option value="15">Шифр 4.6.2.3 и 4.6.2.6</option>
+                    <option value="16">Шифр 4.7.1 и 4.7.2</option>
+                    <option value="17">Шифр 4.8.1.1 и 4.8.1.4</option>
+                    <option value="18">Шифр 4.8.1.2 и 4.8.1.5</option>
+                    <option value="19">Шифр 4.8.1.3 и 4.8.1.6</option>
+                    <option value="20">Шифр 4.8.2.1 и 4.8.2.4</option>
+                    <option value="21">Шифр 4.8.2.2 и 4.8.2.5</option>
+                    <option value="22">Шифр 4.8.2.3 и 4.8.2.6</option>
+                </select><br><br>
+
+                <span class="tooltip">?
+                    <span class="tooltiptext" id="methodDescription">Выберите метод шифрования, чтобы увидеть
+                        описание.</span>
+                </span><br><br>
+
+                <button type="submit">Зашифровать</button>
+            </form>
+
+            <button id="downloadGammaBtn">Скачать гамму</button>
+        </div>
+
+        <div class="tab-content" id="decrypt">
+            <h2>Дешифрование</h2>
+            <form id="decryptForm" enctype="multipart/form-data">
+                <label for="inputFileDecrypt">Выберите файл для дешифрования:</label>
+                <input type="file" name="inputFileDecrypt" id="inputFileDecrypt" required><br><br>
+
+                <label for="gammaFile">Выберите файл гаммы:</label>
+                <input type="file" name="gammaFile" id="gammaFile" required><br><br>
+
+                <label for="lengthByte">Есть ли байт длины:</label>
+                <select name="lengthByte" id="lengthByte">
+                    <option value="0">Нет</option>
+                    <option value="1">Да</option>
+                </select><br><br>
+
+                <label for="checksumByte">Есть ли байт контрольной суммы:</label>
+                <select name="checksumByte" id="checksumByte">
+                    <option value="0">Нет</option>
+                    <option value="1">Да</option>
+                </select><br><br>
+
+                <button type="submit">Расшифровать</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

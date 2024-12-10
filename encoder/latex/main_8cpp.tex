@@ -1,0 +1,233 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{main_8cpp_a56cf25bafec7ffd4369d2283459c8482}{detect\+Majority\+Alphabet}} (const string \&text)
+\begin{DoxyCompactList}\small\item\em Определяет преобладающий алфавит в тексте. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{main_8cpp_acff0ceca8ab8bc62e9cc8180e4f653b1}{generate\+Gamma}} (char alphabet\+Type)
+\begin{DoxyCompactList}\small\item\em Генерирует случайную гамму на основе указанного алфавита. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{main_8cpp_a34154909edae0adb31142f02ce6bd027}{generate\+Time\+Based\+Gamma}} (int method\+Choice)
+\begin{DoxyCompactList}\small\item\em Создает гамму на основе времени. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{main_8cpp_a15fdaa7b8037e1416be6efb6108329f3}{xor\+Block}} (const string \&text, const string \&gamma)
+\begin{DoxyCompactList}\small\item\em Выполняет побитовую операцию XOR для текста и гаммы. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{main_8cpp_a930699196d1739fe263945456ad66e9e}{calculate\+Checksum}} (const string \&text)
+\begin{DoxyCompactList}\small\item\em Вычисляет контрольную сумму для текста. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{main_8cpp_a49b2474aca3f07a59b9f8624f5e1076f}{calculate\+Time\+Dependent\+Checksum}} (const string \&text)
+\begin{DoxyCompactList}\small\item\em Вычисляет контрольную сумму для текста, зависящую от времени. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{main_8cpp_ad33c59d01763635db11fb8afadc0a6ed}{remove\+Last\+Byte}} (const string \&text)
+\begin{DoxyCompactList}\small\item\em Удаляет последний байт из текста (например, байт длины или контрольной суммы). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_aec315d77f5c38417289a0e311d2a9d31}{show\+Help}} ()
+\begin{DoxyCompactList}\small\item\em Отображает справочную информацию по использованию программы. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_ac5379b3915b4adfb81d0f74470781def}{show\+List\+Methods}} ()
+\begin{DoxyCompactList}\small\item\em Отображает список доступных методов шифрования. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Главная функция программы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{main_8cpp_a35ff0e57db31777604c4acb85d69a2c1}{BLOCK\+\_\+\+SIZE}} = 16
+\begin{DoxyCompactList}\small\item\em Размер блока для шифрования/дешифрования. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_adb296ab008d1d271e05ea135b122d989}{MODULUS}}
+\begin{DoxyCompactList}\small\item\em Модуль гаммирования, определяемый пользователем \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a930699196d1739fe263945456ad66e9e}\index{main.cpp@{main.cpp}!calculateChecksum@{calculateChecksum}}
+\index{calculateChecksum@{calculateChecksum}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateChecksum()}{calculateChecksum()}}
+{\footnotesize\ttfamily \label{main_8cpp_a930699196d1739fe263945456ad66e9e} 
+unsigned char calculate\+Checksum (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет контрольную сумму для текста. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Входной текст. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Контрольная сумма. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a49b2474aca3f07a59b9f8624f5e1076f}\index{main.cpp@{main.cpp}!calculateTimeDependentChecksum@{calculateTimeDependentChecksum}}
+\index{calculateTimeDependentChecksum@{calculateTimeDependentChecksum}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateTimeDependentChecksum()}{calculateTimeDependentChecksum()}}
+{\footnotesize\ttfamily \label{main_8cpp_a49b2474aca3f07a59b9f8624f5e1076f} 
+unsigned char calculate\+Time\+Dependent\+Checksum (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет контрольную сумму для текста, зависящую от времени. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Входной текст. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Контрольная сумма. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a56cf25bafec7ffd4369d2283459c8482}\index{main.cpp@{main.cpp}!detectMajorityAlphabet@{detectMajorityAlphabet}}
+\index{detectMajorityAlphabet@{detectMajorityAlphabet}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{detectMajorityAlphabet()}{detectMajorityAlphabet()}}
+{\footnotesize\ttfamily \label{main_8cpp_a56cf25bafec7ffd4369d2283459c8482} 
+char detect\+Majority\+Alphabet (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Определяет преобладающий алфавит в тексте. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Входной текст. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}L\textquotesingle{}, если больше латинских символов; \textquotesingle{}C\textquotesingle{}, если больше кириллических. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_acff0ceca8ab8bc62e9cc8180e4f653b1}\index{main.cpp@{main.cpp}!generateGamma@{generateGamma}}
+\index{generateGamma@{generateGamma}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateGamma()}{generateGamma()}}
+{\footnotesize\ttfamily \label{main_8cpp_acff0ceca8ab8bc62e9cc8180e4f653b1} 
+string generate\+Gamma (\begin{DoxyParamCaption}\item[{char}]{alphabet\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Генерирует случайную гамму на основе указанного алфавита. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alphabet\+Type} & Тип алфавита (\textquotesingle{}L\textquotesingle{} для латинского, \textquotesingle{}C\textquotesingle{} для кириллического). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Сгенерированная гамма. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a34154909edae0adb31142f02ce6bd027}\index{main.cpp@{main.cpp}!generateTimeBasedGamma@{generateTimeBasedGamma}}
+\index{generateTimeBasedGamma@{generateTimeBasedGamma}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateTimeBasedGamma()}{generateTimeBasedGamma()}}
+{\footnotesize\ttfamily \label{main_8cpp_a34154909edae0adb31142f02ce6bd027} 
+string generate\+Time\+Based\+Gamma (\begin{DoxyParamCaption}\item[{int}]{method\+Choice}{}\end{DoxyParamCaption})}
+
+
+
+Создает гамму на основе времени. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method\+Choice} & Выбор метода гаммирования. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Сгенерированная гамма. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Главная функция программы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов командной строки. \\
+\hline
+{\em argv} & Аргументы командной строки. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Код завершения программы. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ad33c59d01763635db11fb8afadc0a6ed}\index{main.cpp@{main.cpp}!removeLastByte@{removeLastByte}}
+\index{removeLastByte@{removeLastByte}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{removeLastByte()}{removeLastByte()}}
+{\footnotesize\ttfamily \label{main_8cpp_ad33c59d01763635db11fb8afadc0a6ed} 
+string remove\+Last\+Byte (\begin{DoxyParamCaption}\item[{const string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Удаляет последний байт из текста (например, байт длины или контрольной суммы). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Входной текст. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Текст без последнего байта. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_aec315d77f5c38417289a0e311d2a9d31}\index{main.cpp@{main.cpp}!showHelp@{showHelp}}
+\index{showHelp@{showHelp}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{showHelp()}{showHelp()}}
+{\footnotesize\ttfamily \label{main_8cpp_aec315d77f5c38417289a0e311d2a9d31} 
+void show\+Help (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Отображает справочную информацию по использованию программы. 
+
+\Hypertarget{main_8cpp_ac5379b3915b4adfb81d0f74470781def}\index{main.cpp@{main.cpp}!showListMethods@{showListMethods}}
+\index{showListMethods@{showListMethods}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{showListMethods()}{showListMethods()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac5379b3915b4adfb81d0f74470781def} 
+void show\+List\+Methods (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Отображает список доступных методов шифрования. 
+
+\Hypertarget{main_8cpp_a15fdaa7b8037e1416be6efb6108329f3}\index{main.cpp@{main.cpp}!xorBlock@{xorBlock}}
+\index{xorBlock@{xorBlock}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{xorBlock()}{xorBlock()}}
+{\footnotesize\ttfamily \label{main_8cpp_a15fdaa7b8037e1416be6efb6108329f3} 
+string xor\+Block (\begin{DoxyParamCaption}\item[{const string \&}]{text}{, }\item[{const string \&}]{gamma}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет побитовую операцию XOR для текста и гаммы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Текст для шифрования/дешифрования. \\
+\hline
+{\em gamma} & Гамма для операции XOR. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат операции. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a35ff0e57db31777604c4acb85d69a2c1}\index{main.cpp@{main.cpp}!BLOCK\_SIZE@{BLOCK\_SIZE}}
+\index{BLOCK\_SIZE@{BLOCK\_SIZE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{BLOCK\_SIZE}{BLOCK\_SIZE}}
+{\footnotesize\ttfamily \label{main_8cpp_a35ff0e57db31777604c4acb85d69a2c1} 
+const int BLOCK\+\_\+\+SIZE = 16}
+
+
+
+Размер блока для шифрования/дешифрования. 
+
+\Hypertarget{main_8cpp_adb296ab008d1d271e05ea135b122d989}\index{main.cpp@{main.cpp}!MODULUS@{MODULUS}}
+\index{MODULUS@{MODULUS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MODULUS}{MODULUS}}
+{\footnotesize\ttfamily \label{main_8cpp_adb296ab008d1d271e05ea135b122d989} 
+int MODULUS}
+
+
+
+Модуль гаммирования, определяемый пользователем 
+

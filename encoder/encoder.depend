@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1731154343 source:c:\users\ab89\desktop\encodersite\c++\encoder\encoder\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<ctime>
+	<cassert>
+	<thread>
+	<chrono>
+
+1733526853 source:c:\users\ab89\desktop\encodersite\c++\encoder\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<mutex>
+	<ctime>
+	<cassert>
+	<thread>
+	<chrono>
+	<stdexcept>
+	"main.h"
+	"unitTests.h"
+
+1733511839 c:\users\ab89\desktop\encodersite\c++\encoder\main.h
+
+1733527702 c:\users\ab89\desktop\encodersite\c++\encoder\unittests.h
+
+1733556136 source:c:\users\ab89\desktop\encoder\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<mutex>
+	<ctime>
+	<cassert>
+	<thread>
+	<chrono>
+	<stdexcept>
+	"main.h"
+	"unitTests.h"
+
+1733556136 c:\users\ab89\desktop\encoder\main.h
+
+1733527702 c:\users\ab89\desktop\encoder\unittests.h
+
+1733556136 source:c:\users\ab89\desktop\encodersite\encoder\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<mutex>
+	<ctime>
+	<cassert>
+	<thread>
+	<chrono>
+	<stdexcept>
+	"main.h"
+	"unitTests.h"
+
+1733556136 c:\users\ab89\desktop\encodersite\encoder\main.h
+
+1733527702 c:\users\ab89\desktop\encodersite\encoder\unittests.h
+

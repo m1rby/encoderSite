@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.container {
+    text-align: center;
+}
+
+h2 {
+    color: #16a085;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+}
+
+input, select {
+    margin: 5px 0;
+    padding: 8px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Стили для всплывающей подсказки */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 50%; /* Центрируем по вертикали относительно символа "?" */
+    left: 110%; /* Размещаем справа от символа "?" */
+    transform: translateY(-50%); /* Сдвигаем вверх на половину высоты */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
